@@ -1,0 +1,13 @@
+permalink: /posts/:title
+markdown: kramdown
+
+gems:
+  - jekyll-sitemap
+
+name: Ivan Teo 
+#url: https://ivanteo.com/
+description: Insight Data Science project. Classifying transactions by semantic similarity between descriptions and category names.
+#Making a machine to classify human phrases is very hard! For my Insight Data Science project, I built a natural language processing model for Cinch Financial that reads short descriptions of credit card transactions and decides what categories to put them under.
+linkedin: ivanteokh
+github: ivanteokh
+#twitter: holman

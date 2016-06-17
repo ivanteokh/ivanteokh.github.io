@@ -1,0 +1,12 @@
+---
+layout: post
+title:  "Categorizing Transactions with Pay.Class"
+date:   2016-06-16 20:31:30 -0400
+#categories: 
+---
+
+This blog describes a consulting project I have been working on for Cinch Financial. Cinch's app advises the user on personal finance decisions based on the financial background and history of the user. Part of the data that Cinch uses is the credit and debit card transaction history of the user. As you might imagine, the full dataset is huge and complicated.
+
+To make interpretation and processing of the data more tractable, each transaction is classified using one of 300 category labels, based on a short description that is entered when the transaction is made. While the vendor does a pretty good job of attaching the right labels to the transactions, Cinch has found instances of mis-categorizations, which can have implications for the advice given to the user. Imagine that you have just made a mortgage payment, which builds equity, and the transaction is classified as an airfare purchase; the app would think you were worse off than you really are.
+
+My solution was Pay.Class, a classifier I built to correct some of these mistakes, or at least detect if a classification is likely to be incorrect. Check out my other posts for more details on the solution.  

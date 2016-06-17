@@ -1,0 +1,28 @@
+---
+layout: layout
+---
+
+<section class="content">
+  <h1>
+    <a href="{{ page.url }}">{{ page.title }}</a>
+  </h1>
+
+  <section class="byline">
+    {{ page.date | date: "%B %e, %Y" }}
+  </section>
+
+  {{ content }}
+
+  <!-- TODO: bio here -->
+  <section class="meta">
+    <h3>About me</h3>
+    <section class="copy">
+
+      <p>
+      I'm a Fellow at <a href="http://insightdatascience.com">Insight Data Science</a>. 
+      My training is in computational biophysics. I used to <a href="http://www.ks.uiuc.edu/~teo7/">simulate and watch proteins wiggling on my screen</a> before deciding to learn about the wiggles of things in real-world problems.   
+      </p>
+
+    </section>
+  </section>
+</section>
