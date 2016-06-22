@@ -28,6 +28,6 @@ I finally settled on Word2vec, a neural network model. I was not able to find a 
 
 The input to PaymentClass is the transaction description. Pre-processing included the removal of stopwords like 'payment' and 'purchase', as well as words that were less than two characters long or words that occurred less than 4 times in the entire dataset. After that, the remaining words are run through a spellchecker. <a href="http://pythonhosted.org/pyenchant/">pyEnchant</a> is a pretty good spellchecker which gives multiple suggestions. Each word is checked for existence in the Common Crawl corpus. If it does not exist in the corpus, then the spellchecker is run on the word and subsequently a list of possible replacements is generated. During the second step, when the transaction is compared to each of the categories, the replacement word with the highest similarity score to the category is selected during comparison to that category. In other words, the choice of replacement word depends on which category the transaction is being compared to. This methodology allows ambiguity between replacement words to be resolved. 
 
-
+<h2>Performance</h2>
  
 
