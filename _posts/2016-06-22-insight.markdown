@@ -1,0 +1,8 @@
+---
+layout: post
+title:  "Pending Approval"
+date:   2016-06-30 07:30:00 -0400
+#categories: 
+---
+
+My Insight project post is currently pending approval by the company I am consulting for. Please check back again soon!
