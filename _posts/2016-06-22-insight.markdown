@@ -88,7 +88,7 @@ gridsearch was performed over the nu and gamma parameters. A sigmoid kernel was 
 radial basis function kernels in preliminary tests. Shown below is an optimal (highest AUC over gamma parameter) ROC curve for a typical class.
 Optimal parameters were then selected near the inflection point, giving a precision and recall of 0.78 and 0.77 respectively.
 
-<img src="../images/ROC.png">
+<img src="../images/ROC.png.old">
 
 In the current implementation of ClassCorrect.Layer2, the model used is a pre-trained one and not tunable. I tested the model using both equally
 weighted tokens, as well as tokens weighted by a tf-idf-like scheme, where the similarity to a given class was multiplied by the logarithm of the
