@@ -8,7 +8,7 @@ date:   2016-06-16 20:31:30 -0400
 <h2>Problem Statement</h2>
 
 Businesses often have to deal with categorical data that contain wrongly classified entries. These errors can have an impact on business processes
-and, ultimately, the bottom line. At Insight, I worked on a project for a firm to implement a code module which detects classification errors and
+and, ultimately, the bottom line. At Insight, I worked on a project for a firm to implement a code module which detects classification errors and corrects them.
 
 The firm’s product relies on classifications of the data entries, each consisting of a short 5 to 10-word description, to provide meaningful output. The
 data itself comes from a third party source, and contains about 30 million entries and around 120 pre-set classes. However, a portion of the entries
