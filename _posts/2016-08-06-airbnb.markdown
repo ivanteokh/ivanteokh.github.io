@@ -1,0 +1,18 @@
+---
+layout: post
+title:  "The Price Is Right! Airbnb edition. Part I: Scraping Airbnb"
+date:   2016-08-06 23:00:00 -0400
+#categories: 
+---
+
+<h2>Getting the most bang for your vacation dollar</h2>
+
+Ever wondered whether you were getting a bargain for that awesome Airbnb you chanced upon? Just how do Airbnb hosts decide on their pricing anyway? In this series of posts, I will try to tackle those questions by analysing data from 900 listings on the Airbnb website. This project is actually part of a challenge given to candidates applying to the <a href="http://www.brooklyndatascience.com">Brooklyn Data Science</a> talent network for data scientists. If you are looking to apply there as well, feel free to check out <a href="https://github.com/ivanteokh/Airbnb-Price">my code</a> for ideas, but you might want to avoid wholesale copying because I planted some Easter eggs in there ;).
+
+I have just scraped the data I needed from Airbnb's website. BeautifulSoup made it really easy for me to locate the relevant fields and extract them. The <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">BeautifulSoup documentation</a> concisely covers pretty much everything you need to know to perform a simple scraping task. There are other sophisticated tools out there, like <a href="http://scrapy.org">Scrapy</a>, which utilizes the powerful XPath selector, but I will save those for a more complex scraping task in the future. 
+
+Another nugget of knowledge I picked up from the experience was how to work with rate limits imposed by the website. As their name suggests, rate limits prevents you from making too many requests to the server within a fixed period of time. These act as the first line of defense against DDoS attacks, where the server is deluged with a huge load of requests and becomes unresponsive to other users or crashes. Staying below the rate limit was simple, at least in my case. Within the `time` package is a `sleep` function that introduces a real-time delay in your code when executed. After playing around with several lengths of time delays, I found that 10 seconds per listing was the smallest delay I could use without being denied my request for going over the limit.
+
+The variables I've chosen to extract from each listing include the geospatial location, ratings by previous guests, and the presence or absence of various amenities. These are the variables that would conceivably affect the listing price. The idea here is to learn from our analysis which of these variables are the most predictive of the listing price. There are good applications for that insight: hosts can better price their listing by learning what the norms are, and guests can assess whether a given listing is fairly priced. That analysis will be performed in the next step, so keep your eyes peeled for more!
+
+Get the scraper from my <a href="https://github.com/ivanteokh/Airbnb-Price">Airbnb-Price repository</a>!
