@@ -1,0 +1,94 @@
+---
+layout: post
+title:  "Regex for Scraping Data"
+date:   2016-08-13 22:30:00 -0400
+#categories: 
+---
+
+<h2>Useful regex stuff for parsing html</h2>
+
+So I've been working on multiple scraping projects. And have on occasion had to use regex (regular expressions) to
+perform certain parsing tasks. 
+There are good tools out there for parsing.
+If you've used BeautifulSoup before, you would be familiar with its powerful tag and attribute selection feature. 
+Another Python package for scraping is Scrapy, which gives you access to the XPath utility.
+
+In some cases, however, HTML-parsing tools doesn't get you far enough. I found that regex can often give you the hack
+you need to solve the problem in most cases. The regex paradigm revolves around pattern matching. You supply a text pattern, 
+and regex will locate all text segments in the file that match the pattern and perform some specified action on them, such as
+simply returning them, or deleting them, or replacing them with some other string. 
+For Linux users, regex has for a long time been a convenient tool for rapid file editing and text manipulation, especially in `sed`. 
+
+However, the syntax used for pattern matching can take awhile to get used to. This post will act as a sticky-note for me to list
+useful examples of regex. Together with the parsing capabilities of BeautifulSoup, regex can almost any parsing job done for you. 
+`re` is the standard package for regex in Python. As an example of how it might be used, the following block of code replaces every 
+instance of the substring 'the' with '###' in a string:
+
+```
+> import re
+> my_string = 'The private eye drove the car without noticing the body-bag 
+in the backseat.'
+> print re.sub('the','###',my_string) 
+
+The private eye drove ### car without noticing ### body-bag in ### backseat.
+```
+
+You can get a more comprehensive list of regex commands from the <a href="https://docs.python.org/2/library/re.html">documentation</a>. 
+For a quick reference for web scraping, check out what I have below so far. 
+
+Other regex web scraping patterns:
+
+**Pattern**<br>
+`foo1 <a href="???">???</a> foo2`<br> 
+**Regex**   
+`foo1 <a href=.*?</a> foo2`<br>
+**Notes**<br>
+'?' makes the '.*' wildcard non-greedy. 
+
+**Pattern**<br>
+`<a href="/foo1/???">` and you want only '???'<br>
+**Regex**   
+`<a href="/foo1/(.*?)"`<br>
+**Notes**<br>
+Parenthesis causes only the enclosed pattern to be returned, although everything else is matched. 
+
+**Pattern**<br>
+`<a href="???.htm">` where '???' represents 3 alphabet characters<br>
+**Regex**   
+`<a href="[a-zA-Z][a-zA-Z][a-zA-Z]\.htm">`<br>
+**Notes**<br>
+'.' has a special function in regex and must be escaped to return its literal representation.<br>
+[a-zA-Z] means any alphabetical character, whether lower or uppercase.<br>
+
+These are the most useful patterns I've used in web scraping so far. More may be added in future. To see a demonstration of how it's
+implemented in conjunction with BeautifulSoup, look at the code below.
+
+```
+from bs4 import BeautifulSoup
+import urllib2, re
+
+url = 'https://www.myserver.com/mypage.htm'
+
+req = urllib2.Request(url)
+r = urllib2.urlopen(req).read()
+soup = BeautifulSoup(r, "lxml")
+
+for div in soup('div'):
+    # test that this div tag has a class attribute, 
+    # otherwise it would return an exception here.
+    try:
+        div['class']
+    except:
+        continue
+    if div['class'] == ['myClass']:
+        all_paras = div.find_all('p')
+        for paragraph in all_paras:
+            # paragraph is not a string by default, needs to be converted for next step.
+            paragraph = str(paragraph); 
+            foo_href = re.findall('<a href="/foo1/(.*?)">',paragraph)
+```
+
+This code scans the page source at the given url for the div tag with the myClass class.
+After locating the tag, it retrieves all the paragraphs (p tags) within the div tag.
+Looping through the paragraphs, it searches for links to addresses within the foo1 directory and extracts 
+them (sans the /foo1/ path) and stores them in the foo_href variable.
