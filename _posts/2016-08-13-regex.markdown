@@ -5,7 +5,7 @@ date:   2016-08-13 22:30:00 -0400
 #categories: 
 ---
 
-<h2>Useful regex stuff for parsing html</h2>
+<h2>Useful regex patterns for parsing html</h2>
 
 So I've been working on multiple scraping projects. And have on occasion had to use regex (regular expressions) to
 perform certain parsing tasks. 
