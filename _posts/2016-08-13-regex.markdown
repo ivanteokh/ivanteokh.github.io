@@ -32,6 +32,13 @@ in the backseat.'
 
 The private eye drove ### car without noticing ### body-bag in ### backseat.
 ```
+As you can see, `re.sub` accomplishes for a string what the following `sed` command does for a file on the command line 
+(sidenote: in-place 
+editing requires a `-i` tag after `sed` for Linux users, or `-i ''` to specify a dummy backup for OS X users):  
+
+```
+sed 's/the/###/g' my_filename
+```
 
 You can get a more comprehensive list of regex commands from the <a href="https://docs.python.org/2/library/re.html">documentation</a>. 
 For a quick reference for web scraping, check out what I have below so far. 
